@@ -13,8 +13,7 @@ public class NoteTarget : MonoBehaviour
         // Asegurarse de que el collider es un trigger
         GetComponent<Collider>().isTrigger = true;
     }
-
-    // Se activa cuando un objeto con Rigidbody entra en el trigger
+    
     void OnTriggerEnter(Collider other)
     {
         NoteObject note = other.GetComponent<NoteObject>();
@@ -23,8 +22,7 @@ public class NoteTarget : MonoBehaviour
             hittableNotes.Add(note);
         }
     }
-
-    // Se activa cuando un objeto sale del trigger
+    
     void OnTriggerExit(Collider other)
     {
         NoteObject note = other.GetComponent<NoteObject>();
@@ -34,14 +32,11 @@ public class NoteTarget : MonoBehaviour
         }
     }
 
-    // Método para que el InputManager le pida que "toque" la nota más cercana/antigua
     public void HitNote()
     {
         if (hittableNotes.Count > 0)
         {
-            // Llama a la primera nota en la lista (la que llegó primero)
             hittableNotes[0].CheckHit();
-            // La removemos para no volver a pegarle
             hittableNotes.RemoveAt(0);
         }
     }

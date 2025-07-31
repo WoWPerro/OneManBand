@@ -19,6 +19,7 @@ public class CharacterController : MonoBehaviour {
     private float verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
+    private NoteTarget currentNoteTarget;
     
     private void Start() {
         rb = GetComponent<Rigidbody>();
@@ -48,6 +49,29 @@ public class CharacterController : MonoBehaviour {
             animator.SetBool("isJumping", true);
         }
     }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        // Al entrar a un trigger, intentamos obtener el componente NoteTarget
+        NoteTarget target = other.GetComponent<NoteTarget>();
+        if (target != null)
+        {
+            // Si lo encontramos, lo guardamos como nuestra zona actual
+            currentNoteTarget = target;
+            Debug.Log("Personaje entró a la zona: " + other.name);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Al salir, comprobamos si estamos saliendo de la zona que teníamos guardada
+        if (currentNoteTarget != null && other.gameObject == currentNoteTarget.gameObject)
+        {
+            // Si es así, limpiamos la referencia
+            currentNoteTarget = null;
+            Debug.Log("Personaje salió de la zona: " + other.name);
+        }
+    }
 
     private void MyInput() {
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -57,6 +81,15 @@ public class CharacterController : MonoBehaviour {
             readyToJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // Si el personaje está dentro de una zona de notas...
+            if (currentNoteTarget != null)
+            {
+                // ...le decimos a esa zona que intente validar el acierto.
+                currentNoteTarget.HitNote();
+            }
         }
     }
 
@@ -98,5 +131,7 @@ public class CharacterController : MonoBehaviour {
         Gizmos.color = grounded ? Color.green : Color.red;
         Gizmos.DrawWireSphere(orientation.position, 0.1f);
     }
+    
+    
 }
 }
