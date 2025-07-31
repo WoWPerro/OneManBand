@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 public class CharacterController : MonoBehaviour {
 
     [SerializeField] GameObject frogModel;
@@ -98,10 +99,18 @@ public class CharacterController : MonoBehaviour {
             {
                 // ...le decimos a esa zona que intente validar el acierto.
                 currentNoteTarget.HitNote();
+                currentNoteTarget.GetComponent<Animator>().SetBool("Hit", true);
+                StartCoroutine(TurnOffAnim());
             }
         }
     }
 
+    IEnumerator TurnOffAnim()
+    {
+        yield return new WaitForSeconds(.1f);
+        currentNoteTarget.GetComponent<Animator>().SetBool("Hit", false);
+    }
+    
     private void MovePlayer() {
         // Calc movement dir
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;

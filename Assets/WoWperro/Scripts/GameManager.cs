@@ -90,8 +90,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void BadScore()
     {
-        // Decide qué hacer en un fallo. ¿Resetear score? ¿Quitar un instrumento?
-        score = 0;
+        score--;
         if (scoreText) scoreText.text = score.ToString();
         // if (slider) slider.BadScore();
     }
