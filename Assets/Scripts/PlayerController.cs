@@ -92,6 +92,7 @@ public class CharacterController : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
+            
             // Si el personaje está dentro de una zona de notas...
             if (currentNoteTarget != null)
             {
