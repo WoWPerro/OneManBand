@@ -20,11 +20,12 @@ public class CharacterController : MonoBehaviour {
     Vector3 moveDirection;
     Rigidbody rb;
     private NoteTarget currentNoteTarget;
-    
+
     private void Start() {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+        //AudioManager.Instance.Play("Song");
     }
 
     private void FixedUpdate() {
@@ -37,19 +38,26 @@ public class CharacterController : MonoBehaviour {
         SpeedControl();
         if (grounded == true) {
             rb.linearDamping = groundDrag;
-        } else {
+        }
+        else
+        {
             rb.linearDamping = 0;
-            
+
         }
         // Check jump animation
         if (readyToJump && grounded == true)
         {
             animator.SetBool("isJumping", false);
-        } else {
+            AudioManager.Instance.Play("FrogSlap2");
+            AudioManager.Instance.Play("FrogCroak3");
+        }
+        else
+        {
             animator.SetBool("isJumping", true);
+            AudioManager.Instance.Play("FrogSlap1");
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         // Al entrar a un trigger, intentamos obtener el componente NoteTarget
@@ -125,13 +133,13 @@ public class CharacterController : MonoBehaviour {
     private void ResetJump() {
         readyToJump = true;
     }
-    
+
     private void OnDrawGizmosSelected() {
-    if (orientation != null) {
-        Gizmos.color = grounded ? Color.green : Color.red;
-        Gizmos.DrawWireSphere(orientation.position, 0.1f);
+        if (orientation != null) {
+            Gizmos.color = grounded ? Color.green : Color.red;
+            Gizmos.DrawWireSphere(orientation.position, 0.1f);
+        }
+
+
     }
-    
-    
-}
 }
