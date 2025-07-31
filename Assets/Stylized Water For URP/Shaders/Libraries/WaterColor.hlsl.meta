@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e9afbf579904d8343be021e5d996d5d3
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 162025
+  packageName: Stylized Water For URP
+  packageVersion: 1.2.1
+  assetPath: Assets/Stylized Water For URP/Shaders/Libraries/WaterColor.hlsl
+  uploadId: 520011
