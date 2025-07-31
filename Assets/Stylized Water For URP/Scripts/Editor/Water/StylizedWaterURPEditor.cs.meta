@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ca37fb64fbf5a164f90d396b6766f9e1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: a70d19752756e9945b82e5c68af7ad93, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 162025
+  packageName: Stylized Water For URP
+  packageVersion: 1.2.1
+  assetPath: Assets/Stylized Water For URP/Scripts/Editor/Water/StylizedWaterURPEditor.cs
+  uploadId: 520011
