@@ -23,7 +23,7 @@ public class NoteObject : MonoBehaviour
     // Referencia al GameManager o al TutorialSequence
     private IGameManager gameManager;
 
-    void Start()
+    void Awake()
     {
             gameManager = GameManager.Instance;
     }
